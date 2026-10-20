@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySpark AI - Asisten Belajar Pintar Masa Kini</title>
+    <style>
+        /* ==========================================
+           1. CSS RESET & GLOBAL STYLES
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           2. HEADER & NAVIGATION
+           ========================================== */
+        header {
+            background: #ffffff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6c5ce7;
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #2d3436;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: #6c5ce7;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #5b4bc4;
+        }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        .hero {
+            padding: 4rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            opacity: 0.9;
+        }
+
+        /* ==========================================
+           4. DEMO PROTOTIPE AI (INTERAKTIF)
+           ========================================== */
+        .ai-demo-container {
+            max-width: 800px;
+            margin: -3rem auto 3rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .ai-demo-container h2 {
+            margin-bottom: 1rem;
+            color: #6c5ce7;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 1rem;
+            border: 1px solid #dfe6e9;
+            border-radius: 8px;
+            resize: none;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .output-box {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f1f2f6;
+            border-left: 4px solid #6c5ce7;
+            border-radius: 4px;
+            display: none; /* Sembunyi sebelum tombol diklik */
+            text-align: left;
+        }
+
+        /* ==========================================
+           5. PRICING SECTION (MODEL BISNIS)
+           ========================================== */
+        .pricing {
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 280px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #edf2f7;
+        }
+
+        .card.featured {
+            border: 2px solid #6c5ce7;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #6c5ce7;
+            margin: 1rem 0;
+        }
+
+        /* ==========================================
+           6. FOOTER
+           ========================================== */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #2d3436;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGASI -->
+    <header>
+        <div class="logo">StudySpark.ai ✨</div>
+        <nav class="nav-links">
+            <a href="#demo">Coba AI</a>
+            <a href="#harga">Harga</a>
+            <button class="btn-primary" onclick="alert('Fitur Login akan segera hadir!')">Masuk</button>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Rangkum Materi Pelajaran dalam Hitungan Detik</h1>
+        <p>Gunakan keajaiban AI untuk membantu kamu belajar lebih cepat, paham lebih dalam, dan meraih nilai impian!</p>
+    </section>
+
+    <!-- DEMO AI INTERAKTIF -->
+    <section id="demo" class="ai-demo-container">
+        <h2>Uji Coba Rangkuman AI</h2>
+        <p style="margin-bottom: 1rem; color: #636e72;">Tempelkan teks atau catatan pelajaranmu di bawah ini:</p>
+        
+        <textarea id="inputText" placeholder="Contoh: Fotosintesis adalah proses pembuat makanan oleh tumbuhan hijau dengan bantuan sinar matahari..."></textarea>
+        
+        <button class="btn-primary" style="width: 100%;" onclick="generateSummary()">✨ Rangkum Otomatis</button>
+
+        <!-- Hasil Output AI (Simulasi) -->
+        <div id="outputBox" class="output-box">
+            <strong> Hasil Rangkuman AI:</strong>
+            <ul id="summaryList" style="margin-left: 1.2rem; margin-top: 0.5rem;"></ul>
+        </div>
+    </section>
+
+    <!-- PRICING / MODEL BISNIS -->
+    <section id="harga" class="pricing">
+        <h2>Pilih Paket Belajar</h2>
+        <p>Mulai gratis atau tingkatkan ke Pro untuk hasil maksimal.</p>
+
+        <div class="pricing-cards">
+            <!-- Paket Gratis -->
+            <div class="card">
+                <h3>Starter</h3>
+                <div class="price">Rp 0</div>
+                <p>✓ 3 Rangkuman / Hari</p>
+                <p>✓ Ekspor Teks Biasa</p>
+                <br>
+                <button class="btn-primary" style="background:#b2bec3;" onclick="pilihPaket('Starter')">Gunakan Gratis</button>
+            </div>
+
+            <!-- Paket Berbayar (Pro) -->
+            <div class="card featured">
+                <h3>Pro Student 🔥</h3>
+                <div class="price">Rp 15.000 <span style="font-size:0.9rem;">/bln</span></div>
+                <p>✓ Unlimited Rangkuman AI</p>
+                <p>✓ Fitur Buat Quiz Otomatis</p>
+                <p>✓ Ekspor ke PDF & Notion</p>
+                <br>
+                <button class="btn-primary" onclick="pilihPaket('Pro Student')">Beli Paket Pro</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 StudySpark AI — Proyek Wirausaha Digital SMA</p>
+    </footer>
+
+    <!-- ==========================================
+       7. JAVASCRIPT LOGIC
+       ========================================== -->
+    <script>
+        // Fungsi simulasi pemrosesan AI Rangkuman Teks
+        function generateSummary() {
+            const input = document.getElementById('inputText').value.trim();
+            const outputBox = document.getElementById('outputBox');
+            const summaryList = document.getElementById('summaryList');
+
+            if (input === "") {
+                alert("Harap masukkan teks materi pelajaran terlebih dahulu!");
+                return;
+            }
+
+            // Menampilkan indikator loading sederhana
+            outputBox.style.display = "block";
+            summaryList.innerHTML = "<li><em>Sedang memproses dengan AI...⚡</em></li>";
+
+            // Simulasi delay pemrosesan AI selama 1.5 detik
+            setTimeout(() => {
+                summaryList.innerHTML = `
+                    <li><strong>Poin Utama:</strong> AI berhasil menganalisis ${input.length} karakter teks.</li>
+                    <li><strong>Ringkasan 1:</strong> Konsep penting telah disederhanakan agar mudah dihafalkan.</li>
+                    <li><strong>Ringkasan 2:</strong> Pelajari kata kunci utama untuk persiapan ujian.</li>
+                `;
+            }, 1500);
+        }
+
+        // Fungsi simulasi konversi pelanggan (Pemesanan Paket)
+        function pilihPaket(namaPaket) {
+            const nama = prompt(`Kamu memilih paket ${namaPaket}.\nMasukkan Nama/WhatsApp kamu untuk konfirmasi:`);
+            if (nama) {
+                alert(`Terima kasih ${nama}! Tim StudySpark akan menghubungi kamu untuk aktivasi paket ${namaPaket}.`);
+            }
+        }
+    </script>
+</body>
+</html>
